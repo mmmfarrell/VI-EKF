@@ -9,7 +9,7 @@ VIEKF_ROS::VIEKF_ROS() :
   pose_sub_ = nh_.subscribe("truth/pose", 10, &VIEKF_ROS::pose_truth_callback, this);
   transform_sub_ = nh_.subscribe("truth/transform", 10, &VIEKF_ROS::transform_truth_callback, this);
   odometry_pub_ = nh_.advertise<nav_msgs::Odometry>("odom", 1);
-  is_flyinh_pub_ = nh_.advertise<std_msgs::Bool>("is_flying", 1);
+  is_flying_pub_ = nh_.advertise<std_msgs::Bool>("is_flying", 1);
 //  bias_pub_ = nh_.advertise<sensor_msgs::Imu>("imu/bias", 1);
   
   image_sub_ = it_.subscribe("color", 10, &VIEKF_ROS::color_image_callback, this);
@@ -445,7 +445,7 @@ void VIEKF_ROS::truth_callback(Vector3d& z_pos, Vector4d& z_att, ros::Time time)
       cout << "took off!" << endl;
       // The drag term is now valid, activate it if we are supposed to use it.
 
-      std::msgs::Bool is_flying_msg;
+      std_msgs::Bool is_flying_msg;
       is_flying_msg.data = true;
       is_flying_pub_.publish(is_flying_msg);
     }
