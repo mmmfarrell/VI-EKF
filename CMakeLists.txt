@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(vi_ekf)
 
-set(CMAKE_CXX_FLAGS "-std=c++17 -mavx -mfma")
+set(CMAKE_CXX_FLAGS "-std=c++17")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 add_definitions("-DNUM_FEATURES=0")
 
@@ -17,7 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
 )
 find_package(Boost REQUIRED COMPONENTS system thread)
 find_package(Eigen3 REQUIRED)
-find_package(GTest REQUIRED)
+#find_package(GTest REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(yaml-cpp REQUIRED)
 
@@ -40,7 +40,7 @@ include_directories(include)
 include_directories(
   ${Boost_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIRS}
-  ${GTEST_INCLUDE_DIRS}
+  #${GTEST_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
   ${YAML_CPP_INCLUDE_DIR}
 )
@@ -68,8 +68,8 @@ add_library(klt_tracker
   include/klt_tracker.h
 )
 
-add_executable(jac_test src/test/jac_test.cpp)
-target_link_libraries(jac_test ${GTEST_LIBRARIES} pthread vi_ekf geometry)
+#add_executable(jac_test src/test/jac_test.cpp)
+#target_link_libraries(jac_test ${GTEST_LIBRARIES} pthread vi_ekf geometry)
 
 add_library(vi_ekf_ros
   src/vi_ekf_ros.cpp
