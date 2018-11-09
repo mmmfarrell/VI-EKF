@@ -13,6 +13,7 @@
 #include <nav_msgs/Odometry.h>
 #include <geometry_msgs/PoseStamped.h>
 #include <geometry_msgs/TransformStamped.h>
+#include <std_msgs/Bool.h>
 #include <cv_bridge/cv_bridge.h>
 #include <image_transport/image_transport.h>
 #include <opencv/cv.hpp>
@@ -57,6 +58,7 @@ private:
   ros::Subscriber pose_sub_;
   ros::Subscriber transform_sub_;
   ros::Publisher odometry_pub_;
+  ros::Publisher is_flying_pub_;
   ros::Publisher bias_pub_;
   nav_msgs::Odometry odom_msg_;
 
